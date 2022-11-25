@@ -105,7 +105,7 @@ public class Airbus {
 		this.dataInizioServizio = dataInizioServizio;
 	}
 
-	public int getNumeroPasseggeri() {
+	public Integer getNumeroPasseggeri() {
 		return numeroPasseggeri;
 	}
 

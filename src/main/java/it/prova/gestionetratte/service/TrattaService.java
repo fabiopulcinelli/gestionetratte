@@ -18,4 +18,6 @@ public interface TrattaService {
 	void rimuovi(Long idToRemove);
 
 	List<Tratta> findByExample(Tratta example);
+	
+	Tratta findByCodiceAndDescrizione(String codice, String descrizione);
 }
