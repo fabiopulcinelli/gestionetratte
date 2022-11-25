@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.repository.tratta.TrattaRepository;
+import it.prova.gestionetratte.web.api.exception.TratteNotFoundException;
 
 @Service
 public class TrattaServiceImpl implements TrattaService{
@@ -45,7 +46,7 @@ public class TrattaServiceImpl implements TrattaService{
 	@Override
 	public void rimuovi(Long idToRemove) {
 		repository.findById(idToRemove)
-			.orElseThrow(() -> new FilmNotFoundException("Tratta not found con id: " + idToRemove));
+			.orElseThrow(() -> new TratteNotFoundException("Tratta not found con id: " + idToRemove));
 		repository.deleteById(idToRemove);
 	}
 
