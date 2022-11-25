@@ -2,8 +2,11 @@ package it.prova.gestionetratte.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import it.prova.gestionetratte.model.Airbus;
 
+@Service
 public class AirbusServiceImpl implements AirbusService{
 
 	//TODO
