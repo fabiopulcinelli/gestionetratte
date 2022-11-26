@@ -23,7 +23,6 @@ import it.prova.gestionetratte.model.Stato;
 import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.service.TrattaService;
 import it.prova.gestionetratte.web.api.exception.TratteNotFoundException;
-import it.prova.gestionetratte.web.api.exception.AirbusDeleteLinkedException;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
 import it.prova.gestionetratte.web.api.exception.TrattaNotAnnullataException;
 
@@ -88,5 +87,18 @@ public class TrattaController {
 		Set<Tratta> trattaSet = new HashSet<>(trattaLista);
 		
 		return TrattaDTO.createTrattaDTOSetFromModelSet(trattaSet, false);
+	}
+	
+	// metodo concludi tratte
+	@GetMapping("/concludiTratte")
+	public Set<TrattaDTO> concludiTratte() {
+		
+		trattaService.concludiTratte();
+		
+		// stampo tutto dopo aver concluso le tratte
+		List<Tratta> trattaLista = trattaService.listAllElements(true);
+		Set<Tratta> trattaSet = new HashSet<>(trattaLista);
+		
+		return TrattaDTO.createTrattaDTOSetFromModelSet(trattaSet, true);
 	}
 }

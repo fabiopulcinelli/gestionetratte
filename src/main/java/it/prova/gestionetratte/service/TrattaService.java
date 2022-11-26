@@ -20,4 +20,6 @@ public interface TrattaService {
 	List<Tratta> findByExample(Tratta example);
 	
 	Tratta findByCodiceAndDescrizione(String codice, String descrizione);
+	
+	void concludiTratte();
 }
