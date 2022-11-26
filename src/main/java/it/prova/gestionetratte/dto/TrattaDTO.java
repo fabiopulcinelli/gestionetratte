@@ -32,9 +32,8 @@ public class TrattaDTO {
 	
 	@NotNull(message = "{tratta.oraAtterraggio.notnull}")
 	private LocalTime oraAtterraggio;
-	
-	@NotBlank(message = "{tratta.stato.notblank}")
-	@Enumerated(EnumType.STRING)
+
+	@NotNull(message = "{tratta.stato.notblank}")
 	private Stato stato;
 
 	@JsonIgnoreProperties(value = { "tratte" })
