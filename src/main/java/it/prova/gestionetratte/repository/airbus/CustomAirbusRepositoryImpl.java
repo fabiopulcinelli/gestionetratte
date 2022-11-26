@@ -37,8 +37,8 @@ public class CustomAirbusRepositoryImpl implements CustomAirbusRepository{
 			paramaterMap.put("dataInizioServizio", example.getDataInizioServizio());
 		}
 		if (example.getNumeroPasseggeri() != null) {
-			whereClauses.add("a.numeroPassegeri >= :numeroPassegeri ");
-			paramaterMap.put("numeroPassegeri", example.getNumeroPasseggeri());
+			whereClauses.add("a.numeroPasseggeri >= :numeroPasseggeri ");
+			paramaterMap.put("numeroPasseggeri", example.getNumeroPasseggeri());
 		}
 		
 		queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
