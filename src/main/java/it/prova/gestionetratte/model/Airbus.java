@@ -39,15 +39,13 @@ public class Airbus {
 	public Airbus() {
 	}
 
-	public Airbus(Long id, String codice, String descrizione, LocalDate dataInizioServizio, int numeroPasseggeri,
-			Set<Tratta> tratte) {
+	public Airbus(Long id, String codice, String descrizione, LocalDate dataInizioServizio, int numeroPasseggeri) {
 		super();
 		this.id = id;
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.dataInizioServizio = dataInizioServizio;
 		this.numeroPasseggeri = numeroPasseggeri;
-		this.tratte = tratte;
 	}
 
 	public Airbus(String codice, String descrizione, LocalDate dataInizioServizio, int numeroPasseggeri,
