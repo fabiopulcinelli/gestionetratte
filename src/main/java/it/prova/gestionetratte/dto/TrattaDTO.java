@@ -5,8 +5,6 @@ import java.time.LocalTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -160,7 +158,7 @@ public class TrattaDTO {
 				trattaModel.getData(), trattaModel.getOraDecollo(), trattaModel.getOraAtterraggio(), trattaModel.getStato());
 
 		if (includeAirbus)
-			result.setAirbus(AirbusDTO.buildAirbusDTOFromModel(trattaModel.getAirbus(), false));
+			result.setAirbus(AirbusDTO.buildAirbusDTOFromModel(trattaModel.getAirbus(), false, false));
 
 		return result;
 	}

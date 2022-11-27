@@ -1,6 +1,5 @@
 package it.prova.gestionetratte.web.api;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,9 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.prova.gestionetratte.dto.AirbusDTO;
-import it.prova.gestionetratte.dto.TrattaDTO;
 import it.prova.gestionetratte.model.Airbus;
-import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.service.AirbusService;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
 import it.prova.gestionetratte.web.api.exception.AirbusDeleteLinkedException;
@@ -36,7 +33,7 @@ public class AirbusController {
 
 	@GetMapping
 	public List<AirbusDTO> getAll() {
-		return AirbusDTO.createAirbusDTOListFromModelList(airbusService.listAllElementsEager(), true);
+		return AirbusDTO.createAirbusDTOListFromModelList(airbusService.listAllElementsEager(), true, false);
 	}
 
 	@GetMapping("/{id}")
@@ -46,7 +43,7 @@ public class AirbusController {
 		if (airbus == null)
 			throw new AirbusNotFoundException("Airbus not found con id: " + id);
 
-		return AirbusDTO.buildAirbusDTOFromModel(airbus, true);
+		return AirbusDTO.buildAirbusDTOFromModel(airbus, true, false);
 	}
 
 	@PostMapping
@@ -56,7 +53,7 @@ public class AirbusController {
 			throw new IdNotNullForInsertException("Non è ammesso fornire un id per la creazione");
 
 		Airbus airbusInserito = airbusService.inserisciNuovo(airbusInput.buildAirbusModel());
-		return AirbusDTO.buildAirbusDTOFromModel(airbusInserito, false);
+		return AirbusDTO.buildAirbusDTOFromModel(airbusInserito, false, false);
 	}
 
 	@PutMapping("/{id}")
@@ -68,7 +65,7 @@ public class AirbusController {
 
 		airbusInput.setId(id);
 		Airbus airbusAggiornato = airbusService.aggiorna(airbusInput.buildAirbusModel());
-		return AirbusDTO.buildAirbusDTOFromModel(airbusAggiornato, false);
+		return AirbusDTO.buildAirbusDTOFromModel(airbusAggiornato, false, false);
 	}
 
 	@DeleteMapping("/{id}")
@@ -84,6 +81,13 @@ public class AirbusController {
 	@PostMapping("/search")
 	public List<AirbusDTO> search(@RequestBody AirbusDTO example) {
 		return AirbusDTO.createAirbusDTOListFromModelList(airbusService.findByExample(example.buildAirbusModel()),
-				false);
+				false, false);
+	}
+	
+	// metodo concludi tratte
+	@GetMapping("/listaAirbusEvidenziandoSovrapposizioni")
+	public Set<AirbusDTO> listaAirbusEvidenziandoSovrapposizioni() {
+		
+		return airbusService.listaAirbusEvidenziandoSovrapposizioni();
 	}
 }
